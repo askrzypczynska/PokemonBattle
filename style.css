@@ -6,6 +6,11 @@ body{
     text-align: center;
 }
 
+@font-face {
+    font-family: 'Gamer';
+    src: url('Gamer.ttf');
+   }
+
 
 * {
     box-sizing: border-box;
@@ -25,6 +30,23 @@ body{
 
 }
 
+.namePokemon, .namePokemonEnemy{
+    font-family: "Gamer";
+    font-size: 40px;
+}
+
+.typePokemon{
+    font-family: "Gamer";
+    font-size: 30px;
+    text-shadow: 0px 0px 8px yellow;
+}
+
+.typePokemonEnemy{
+    font-family: "Gamer";
+    font-size: 30px;
+    text-shadow: 0px 0px 8px green;
+}
+
 .mainPokemon{
 
     width: 22vw;
@@ -32,6 +54,7 @@ body{
     border: 2px solid black;
     background-image: url("img/background.jpg");
     background-size: auto;
+    margin-bottom: 10px;
 
 }
 
@@ -40,8 +63,26 @@ body{
     width: 20vw;
 }
 
+progress{
+    height: 20px;
+    width: 10vw;
+    border: 2px solid black;
+}
+
+progress::-webkit-progress-bar {
+    background-color: white;
+  }
+  progress::-webkit-progress-value {
+    background-color: green;
+  }
+
+.hpPointEnemy, .hpPoint{
+    font-family: "Gamer";
+    font-size: 30px;
+}
+
 .buttons{
-    width: 20vw;
+    position: relative;
 }
 
 .buttons img{
@@ -49,17 +90,82 @@ body{
 }
 
 .buttons button{
-   font-size: 20px;
+   font-size: 30px;
    border: 5px solid black;
    padding: 5px;
-   background: linear-gradient(90deg, rgb(28, 16, 248) 0%, rgb(86, 86, 177) 48%, rgba(0,212,255,1) 100%);
-   color: white;
+   background: linear-gradient(#4165e0, #afc1ff, #4165e0);
+   color: black;
+   font-family: "Gamer";
    cursor: pointer;
 }
 
 .buttons button:hover{
+    background: linear-gradient(#2d4699, #95a5dd, #2d4699);
     color: black;
 }
+
+.attackBtn{
+    margin-right: 20px;
+}
+
+#skillCheck{
+
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-top: 35px;
+    height: 25px;
+    width: 300px;
+    background-image:
+      linear-gradient(
+        to right, 
+        #ff0000 20%,
+        #ff9900 20%,
+        #ff9900 40%,
+        #f1ff2c 40%,
+        #f1ff2c 48%,
+        #00ff0d 48%,
+        #00ff0d 52%,
+        #f1ff2c 52%,
+        #f1ff2c 42%,
+        #f1ff2c 60%,
+        #ff9900 60%,
+        #ff9900 80%,
+        #ff0000 80%
+      );
+    border: 2px solid black;
+
+
+
+}
+
+#marker{
+
+    height: 30px;
+    width: 5px;
+    background: linear-gradient(#4165e0, #afc1ff, #4165e0);
+    z-index: 9;
+
+    position: absolute;
+
+    animation: linear infinite alternate;
+    animation-name: run;
+    animation-duration: 2s;
+
+}
+
+@keyframes run {
+    0% {
+      left: 40px;
+    }
+    50% {
+      left: 340px;
+    }
+    100% {
+      left: 40px;    
+    }
+}
+
 
 .enemyPokemon{
     width: 22vw;
@@ -67,6 +173,7 @@ body{
     border: 2px solid black;
     background-image: url("img/background.jpg");
     background-size: auto;
+    margin-bottom: 10px;
 }
 
 .enemyPokemon img{
