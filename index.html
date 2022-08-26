@@ -7,6 +7,7 @@
     <title>PokemonBattle</title>
 
     <script src="https://kit.fontawesome.com/fe4ecc5880.js" crossorigin="anonymous"></script>
+    <
 
     <link rel="stylesheet" href="./style.css">
     <script src="script.js" type="module"></script>
@@ -16,13 +17,32 @@
 <body>
     <div class="container">
 
-        <div class="mainPokemon">Pikachu Type:Electric<img src="img/Pikachu.webp"></div>
-        <div class="buttons">
-            <img src="img/vs.png"></br>
-            <button>Attack</button> 
-            <button>Block</button>
+        <div class="box1">
+            <P class="namePokemon">PIKACHU</P>
+            <p class="typePokemon">ELECTRIC</p>
+            <div class="mainPokemon">
+                <img src="img/Pikachu.webp">
+            </div>
+            <progress id="hpBar" value="100" max="100"></progress>
+            <p class="hpPoint">100 HP</p>
         </div>
-        <div class="enemyPokemon">Bulbassaur Type:Grass<img src="img/bulbasaur.png"></div>
+        <div class="box2">
+            <div class="buttons">
+                <img src="img/vs.png"></br>
+                <button class="attackBtn">ATTACK</button> 
+                <button class="blockBtn">BLOCK</button>             
+                <div id="skillCheck"> <div id="marker"></div></div>
+
+
+            </div>
+        </div>
+        <div class="box3">
+            <P class="namePokemonEnemy">BULBASAUR</P>
+            <p class="typePokemonEnemy">GRASS</p>
+            <div class="enemyPokemon"><img src="img/bulbasaur.png"></div>
+            <progress id="hpBarEnemy" value="50" max="100"></progress>
+            <p class="hpPointEnemy">50 HP</p>
+        </div>
 
     </div>
 
