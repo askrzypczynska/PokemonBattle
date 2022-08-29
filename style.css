@@ -81,7 +81,7 @@ progress::-webkit-progress-bar {
     font-size: 30px;
 }
 
-.buttons{
+.box2{
     position: relative;
 }
 
@@ -108,14 +108,19 @@ progress::-webkit-progress-bar {
     margin-right: 20px;
 }
 
-#skillCheck{
+.skillCheck{
+    margin-top: 35px;
+    height: 25px;
+}
 
-    margin-left: auto;
+.skillCheckVisible{
+
     margin-right: auto;
+    margin-left: auto;
 
     margin-top: 35px;
     height: 25px;
-    width: 300px;
+    width: 15vw;
     background-image:
       linear-gradient(
         to right, 
@@ -135,34 +140,27 @@ progress::-webkit-progress-bar {
       );
     border: 2px solid black;
 
-
-
 }
 
-#marker{
-
+.visibleMarker{
     height: 30px;
     width: 5px;
     background: linear-gradient(#4165e0, #afc1ff, #4165e0);
     z-index: 9;
 
     position: absolute;
-
     animation: linear infinite alternate;
     animation-name: run;
     animation-duration: 2s;
-
 }
 
 @keyframes run {
     0% {
-      left: 40px;
+      left: 13%;
     }
-    50% {
-      left: 340px;
-    }
+
     100% {
-      left: 40px;    
+      left: 86%;    
     }
 }
 
