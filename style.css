@@ -1,7 +1,11 @@
 body{
     margin: 0;
     padding: 0;
-    background-color: rgb(198, 244, 255);
+    background: url("https://i.imgflip.com/5swu8a.png") no-repeat center center fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
     background-size: 100% 100%;
     text-align: center;
 }
@@ -151,7 +155,7 @@ progress::-webkit-progress-bar {
     position: absolute;
     animation: linear infinite alternate;
     animation-name: run;
-    animation-duration: 2s;
+    animation-duration: 0.5s;
 }
 
 @keyframes run {
