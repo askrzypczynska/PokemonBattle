@@ -1,13 +1,20 @@
 const attackBtn = document.querySelector(".attackBtn");
 const blockBtn = document.querySelector(".blockBtn");
 
+let hpMainPokemon = document.querySelector("#hpBar")
+let hpEnemyPokemon = document.querySelector("#hpBarEnemy")
+
 const marker = document.querySelector(".marker");
 const skillCheck = document.querySelector(".skillCheck");
 
-let baseAttack = 10;
+const result = document.querySelector(".result");
+
 let baseBlock = 10
 let skillcheckStarted = false;
 let blockStarted = false;
+
+let currentEnemyPokemon
+let currentPokemon
 
 class Pokemon{
 
@@ -22,6 +29,10 @@ class Pokemon{
 }
 
 function choosePokemons(mainPoke, enemyPoke) {
+
+	currentEnemyPokemon = enemyPoke;
+	currentPokemon = mainPoke;
+
 	document.querySelector(".namePokemon").innerHTML = mainPoke.name.toUpperCase()
 	document.querySelector(".namePokemonEnemy").innerHTML = enemyPoke.name.toUpperCase()
 	document.querySelector(".typePokemon").innerHTML = mainPoke.type.toUpperCase()
@@ -30,15 +41,40 @@ function choosePokemons(mainPoke, enemyPoke) {
 	document.querySelector(".imgEnemy").src = enemyPoke.img
 	document.querySelector("#hpBar").max = mainPoke.health
 	document.querySelector("#hpBarEnemy").max = enemyPoke.health
-	document.querySelector("#hpBar").value = mainPoke.health
-	document.querySelector("#hpBarEnemy").value = enemyPoke.health
+	hpMainPokemon.value = mainPoke.health
+	hpEnemyPokemon.value = enemyPoke.health
 	document.querySelector(".hpPoint").innerHTML= mainPoke.health + " HP"
 	document.querySelector(".hpPointEnemy").innerHTML = enemyPoke.health + " HP"
 }
 
-function skilcheckStart() {
+function enemyAttack() {
+	let currentEnemyAttack = currentEnemyPokemon.dmg 
+	let rnd = Math.random()
+	if(rnd < 0.2){
+		result.innerHTML = currentEnemyPokemon.name.toUpperCase() + " MISSED!"
+	}else if(rnd < 0.6){
+		hpMainPokemon.value -= (currentEnemyAttack*0.5)
+		result.innerHTML = currentEnemyPokemon.name.toUpperCase() + " DEALS " + (currentEnemyAttack*0.5) + " DMG!" 
+	}else if(rnd > 0.8){
+		hpMainPokemon.value -= currentEnemyAttack
+		result.innerHTML = currentEnemyPokemon.name.toUpperCase() + " IS'S SUPER EFFECTIVE "
+	}
+	attackBtn.addEventListener("mousedown", skilcheckStartAttack)
+	blockBtn.addEventListener("mousedown", skilcheckStartBlock)
+	document.querySelector(".hpPoint").innerHTML = hpMainPokemon.value + " HP"
+}
+
+function skilcheckStartAttack() {
 
 	skillcheckStarted = true
+	marker.classList.toggle("visibleMarker");
+	skillCheck.classList.toggle("skillCheckVisible");
+
+}
+
+function skilcheckStartBlock() {
+
+	blockStarted = true
 	marker.classList.toggle("visibleMarker");
 	skillCheck.classList.toggle("skillCheckVisible");
 
@@ -48,33 +84,52 @@ function skilcheckFinish(target) {
 
 	if(skillcheckStarted){
 		let markerPos = (marker.offsetLeft * 100)/marker.parentElement.parentElement.offsetWidth
-		console.log(markerPos);
 	
 		marker.classList.toggle("visibleMarker");
 		skillCheck.classList.toggle("skillCheckVisible");
 		skillcheckStarted = false;
 
-		let currentAttack = baseAttack
-		let currentBlock = baseBlock
+		let currentAttack = pikachu.dmg
 		
 		if(markerPos < 26.5 || markerPos> 72.5){
 			//red zone
 			currentAttack *= 0
+			result.innerHTML = currentPokemon.name.toUpperCase() + " MISSED!"
+
 		}else if(markerPos < 42 || markerPos > 57.1){
 			//orange zone
 			currentAttack *= 0.3
+			hpEnemyPokemon.value -= currentAttack
+			result.innerHTML = currentPokemon.name.toUpperCase() + " IS'S NOT VERY EFFECTIVE " 
+			
 		}else if(markerPos < 48 || markerPos > 51.1){
 			//yellow zone
 			currentAttack *= 0.5
+			hpEnemyPokemon.value -= currentAttack
+			result.innerHTML = currentPokemon.name.toUpperCase() + " DEALS " + currentAttack + " DMG!" 
 		}else{
 			//green zone
 			currentAttack *= 1
+			hpEnemyPokemon.value -= currentAttack
+			result.innerHTML = currentPokemon.name.toUpperCase() + " IS'S SUPER EFFECTIVE "
 		}
+		document.querySelector(".hpPointEnemy").innerHTML = hpEnemyPokemon.value + " HP"
+		attackBtn.removeEventListener("mousedown", skilcheckStartAttack)
+		blockBtn.removeEventListener("mousedown", skilcheckStartBlock)
+		setTimeout(enemyAttack, 2000);
 	} else if(blockStarted){
 
+		let markerPos = (marker.offsetLeft * 100)/marker.parentElement.parentElement.offsetWidth
+	
+		marker.classList.toggle("visibleMarker");
+		skillCheck.classList.toggle("skillCheckVisible");
+		blockStarted = false;
+
+		let currentBlock = baseBlock
+
 		if(markerPos < 26.5 || markerPos> 72.5){
-			currentBlock *= 0
 			//red zone
+			currentBlock *= 0
 			
 		}else if(markerPos < 42 || markerPos > 57.1){
 			//orange zone
@@ -85,18 +140,21 @@ function skilcheckFinish(target) {
 		}else{
 			//green zone
 			currentBlock *= 1
-			pikachu.health += 10
+			hpMainPokemon.value += 10
+			result.innerHTML = currentPokemon.name.toUpperCase() + " BLOCK DMG, AND HEAL FOR 10HP"
 		}
+		
 	}
+
 }
 
-let pikachu = new Pokemon("Pikachu", "Electric", 100, 1, "img/Pikachu.webp")
-let bulbassaur = new Pokemon("Bulbassaur", "Grass", 100, 1, "img/bulbasaur.png")
-let ivysaur = new Pokemon("Ivysaur", "Grass", 150, 2, "img/Ivysaur.webp")
-let venusaur = new Pokemon("Venusaur", "Grass", 200, 2.5, "img/venusaur.png")
+let pikachu = new Pokemon("Pikachu", "Electric", 100, 25, "img/Pikachu.webp")
+let bulbassaur = new Pokemon("Bulbassaur", "Grass", 100, 25, "img/bulbasaur.png")
+let ivysaur = new Pokemon("Ivysaur", "Grass", 150, 35, "img/Ivysaur.webp")
+let venusaur = new Pokemon("Venusaur", "Grass", 200, 40, "img/venusaur.png")
 
 choosePokemons(pikachu, bulbassaur)
 
-attackBtn.addEventListener("mousedown", skilcheckStart)
-blockBtn.addEventListener("mousedown", skilcheckStart)
+attackBtn.addEventListener("mousedown", skilcheckStartAttack)
+blockBtn.addEventListener("mousedown", skilcheckStartBlock)
 document.body.addEventListener("mouseup", skilcheckFinish)

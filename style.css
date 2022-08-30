@@ -22,13 +22,20 @@ body{
     padding: 0;
 }
 
+.result{
+    padding-top: 10vh;
+    height: 60px;
+    text-align: center;
+    font-family: 'Gamer';
+    font-size: 60px;
+}
+
 .container{
     display: grid;
     grid-template-columns: 22vw 20vw 22vw;
     text-align: center;
-    padding: 20px;
     
-    padding-top: 20vh;
+    padding-top: 10vh;
     align-items: center;
     justify-content: center;
 
