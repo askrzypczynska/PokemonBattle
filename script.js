@@ -52,12 +52,12 @@ function enemyAttack() {
 	let rnd = Math.random()
 	if(rnd < 0.2){
 		result.innerHTML = currentEnemyPokemon.name.toUpperCase() + " MISSED!"
-	}else if(rnd < 0.6){
+	}else if(rnd < 0.7){
 		hpMainPokemon.value -= (currentEnemyAttack*0.5)
 		result.innerHTML = currentEnemyPokemon.name.toUpperCase() + " DEALS " + (currentEnemyAttack*0.5) + " DMG!" 
-	}else if(rnd > 0.8){
+	}else if(rnd >= 0.7){
 		hpMainPokemon.value -= currentEnemyAttack
-		result.innerHTML = currentEnemyPokemon.name.toUpperCase() + " IS'S SUPER EFFECTIVE "
+		result.innerHTML = currentEnemyPokemon.name.toUpperCase() + " IS SUPER EFFECTIVE "
 	}
 	attackBtn.addEventListener("mousedown", skilcheckStartAttack)
 	blockBtn.addEventListener("mousedown", skilcheckStartBlock)
@@ -100,7 +100,7 @@ function skilcheckFinish(target) {
 			//orange zone
 			currentAttack *= 0.3
 			hpEnemyPokemon.value -= currentAttack
-			result.innerHTML = currentPokemon.name.toUpperCase() + " IS'S NOT VERY EFFECTIVE " 
+			result.innerHTML = currentPokemon.name.toUpperCase() + " IS NOT VERY EFFECTIVE " 
 			
 		}else if(markerPos < 48 || markerPos > 51.1){
 			//yellow zone
@@ -111,7 +111,7 @@ function skilcheckFinish(target) {
 			//green zone
 			currentAttack *= 1
 			hpEnemyPokemon.value -= currentAttack
-			result.innerHTML = currentPokemon.name.toUpperCase() + " IS'S SUPER EFFECTIVE "
+			result.innerHTML = currentPokemon.name.toUpperCase() + " IS SUPER EFFECTIVE "
 		}
 		document.querySelector(".hpPointEnemy").innerHTML = hpEnemyPokemon.value + " HP"
 		attackBtn.removeEventListener("mousedown", skilcheckStartAttack)

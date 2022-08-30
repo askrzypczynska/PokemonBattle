@@ -162,7 +162,7 @@ progress::-webkit-progress-bar {
     position: absolute;
     animation: linear infinite alternate;
     animation-name: run;
-    animation-duration: 4s;
+    animation-duration: 0.7s;
 }
 
 @keyframes run {
