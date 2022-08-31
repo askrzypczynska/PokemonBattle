@@ -150,13 +150,16 @@ function skilcheckFinish(target) {
 			blockBtn.removeEventListener("mousedown", skilcheckStartBlock)
 			setTimeout(enemyAttack, 2000);
 		} else {
-			result.innerHTML = currentEnemyPokemon.name + " FAINTED! </br> BUT HE EVOLVED!"
 			attackBtn.removeEventListener("mousedown", skilcheckStartAttack)
 			blockBtn.removeEventListener("mousedown", skilcheckStartBlock)
 			if(fightNumber == 1){
+				result.innerHTML = currentEnemyPokemon.name + " FAINTED! </br> BUT HE EVOLVED!"
 				setTimeout(choosePokemons(pikachu, ivysaur), 3000)
 			}else if(fightNumber == 2){
+				result.innerHTML = currentEnemyPokemon.name + " FAINTED! </br> BUT HE EVOLVED!"
 				setTimeout(choosePokemons(pikachu, venusaur), 3000)
+			}else if(fightNumber == 3){
+				result.innerHTML = "CONGRATULATIONS! </br> VERY ANGRY BULBASAUR IS DEFEATED!"
 			}
 		}
 
@@ -204,7 +207,7 @@ function checkIfAlive(){
 
 
 let pikachu = new Pokemon("Pikachu", "Electric", 100, 25, "img/Pikachu.webp", "yellow")
-let bulbassaur = new Pokemon("Bulbassaur", "Grass", 100, 25, "img/bulbasaur.png", "green")
+let bulbassaur = new Pokemon("Bulbasaur", "Grass", 100, 25, "img/bulbasaur.png", "green")
 let ivysaur = new Pokemon("Ivysaur", "Grass", 150, 35, "img/Ivysaur.webp", "green")
 let venusaur = new Pokemon("Venusaur", "Grass", 200, 40, "img/venusaur.png", "green")
 
