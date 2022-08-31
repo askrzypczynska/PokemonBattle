@@ -81,6 +81,7 @@ function enemyAttack() {
 
 	if(hpMainPokemon.value <= 0){
 		//Game Over
+		fightNumber = 0
 		gameLost = true;
 		result.innerHTML = currentPokemon.name.toUpperCase() + " FAINTED!"
 		blockBtn.removeEventListener("mousedown", skilcheckStartBlock)
