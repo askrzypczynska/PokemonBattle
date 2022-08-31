@@ -46,6 +46,10 @@ body{
     font-size: 40px;
 }
 
+.namePokemon span, .namePokemonEnemy span{
+    color: black;
+}
+
 .typePokemon{
     font-family: "Gamer";
     font-size: 30px;
