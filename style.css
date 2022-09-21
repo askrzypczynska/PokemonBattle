@@ -102,12 +102,13 @@ progress::-webkit-progress-bar {
 
 .buttons img{
     padding-bottom: 30px;
+    width: 10vw;
 }
 
 .buttons button{
-   font-size: 30px;
-   border: 5px solid black;
-   padding: 5px;
+   font-size: 2vw;
+   border: 3px solid black;
+   padding: 0.2vw;
    background: linear-gradient(#4165e0, #afc1ff, #4165e0);
    color: black;
    font-family: "Gamer";
